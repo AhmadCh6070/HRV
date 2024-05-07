@@ -3,7 +3,7 @@
     ["main.py","http://localhost:8000/main.py"],
     ["Heart_Empty.py","http://localhost:8000/Heart_Empty.py"],
     ["line.py","http://localhost:8000/line.py"],
-    ["Prev_Historty.txt","http://localhost:8000/Prev_Historty.txt"],
+    ["Prev_History.txt","http://localhost:8000/Prev_History.txt"],
     ["filefifo.py", "http://localhost:8000/pico-lib/filefifo.py"],	
     ["fifo.py", "http://localhost:8000/pico-lib/fifo.py"],
     ["led.py", "http://localhost:8000/pico-lib/led.py"],
