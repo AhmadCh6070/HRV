@@ -193,24 +193,29 @@ class MenuDisplay:
 # The Order of Fucntions Being Calld Is From Bottom Up#
 #######################################################
 
-
+#Calculates Threashold
 def calculate_threshold(arr):
     mean = sum(arr) / len(arr)
     std_dev = math.sqrt(sum((x - mean) ** 2 for x in arr) / len(arr))
     threshold = mean +  std_dev
-    return threshold   
+    return threshold
 
+#Calculates Peaks
 def detect_peaks(arr):
     global PPI
     peaks = []
+    above_threshold = False
     threshold=calculate_threshold(arr)
     for i in range(1, len(arr) - 1):
-        if arr[i] > arr[i - 1] and arr[i] > arr[i + 1] and arr[i] > threshold :
+        if arr[i] > arr[i - 1] and arr[i] > arr[i + 1] and arr[i] > threshold and not above_threshold:
             peaks.append(i)
             PPI.append(i)
+            above_threshold = True
+        elif i < threshold and above_threshold:
+            above_threshold = False
     return peaks
 
-
+#Calculates BPM
 def calculate_heart_rate(sensor_values):
     peaks = detect_peaks(sensor_values)
     if len(peaks) < 2:
@@ -219,13 +224,14 @@ def calculate_heart_rate(sensor_values):
     heart_rate = 60 / time_between_peaks
     return heart_rate  # Return BPM
 
-
+#Stop Process And Display
 def stop_collection(tim):
     global collection_done, sensor_values
     collection_done = True
     heart_rate = calculate_heart_rate(sensor_values)
     display_bpm_ppg(heart_rate, sensor_values)
 
+#Get ADC Values
 def collect_values():
     global collection_done, sensor_values
     collection_done = False
@@ -417,6 +423,7 @@ adc = machine.ADC(0)
 
 #LED
 led = Led(21)
+
 
 
 ##################################################
@@ -836,4 +843,5 @@ while True:
                     break
             if begining:
                 break         
+
 
