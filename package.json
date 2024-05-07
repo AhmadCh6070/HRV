@@ -4,12 +4,12 @@
     ["Heart_Empty.py","http://localhost:8000/Heart_Empty.py"],
     ["line.py","http://localhost:8000/line.py"],
     ["Prev_History.txt","http://localhost:8000/Prev_History.txt"],
-    ["pico-lib/filefifo.py", "http://localhost:8000/pico-lib/filefifo.py"],	
-    ["pico-lib/fifo.py", "http://localhost:8000/pico-lib/fifo.py"],
-    ["pico-lib/led.py", "http://localhost:8000/pico-lib/led.py"],
-    ["pico-lib/piotimer.py", "http://localhost:8000/pico-lib/piotimer.py"],
-    ["pico-lib/ssd1306.mpy", "http://localhost:8000/pico-lib/ssd1306.mpy"],
-    ["pico-lib/umqtt/simple.mpy", "http://localhost:8000/pico-lib/umqtt/simple.mpy"]
+    ["lib/filefifo.py", "http://localhost:8000/lib/filefifo.py"],	
+    ["lib/fifo.py", "http://localhost:8000/lib/fifo.py"],
+    ["lib/led.py", "http://localhost:8000/lib/led.py"],
+    ["lib/piotimer.py", "http://localhost:8000/lib/piotimer.py"],
+    ["lib/ssd1306.mpy", "http://localhost:8000/lib/ssd1306.mpy"],
+    ["lib/umqtt/simple.mpy", "http://localhost:8000/lib/umqtt/simple.mpy"]
   ],
   "deps": [
   ],
