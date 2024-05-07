@@ -431,9 +431,9 @@ led = Led(21)
 ##################################################
 
 
-SSID = "KME761_Group_13"
-PASSWORD = "KME761_Group_13!"
-BROKER_IP = "192.168.13.253"
+SSID = "KME761_Group_5"
+PASSWORD = "TeamFive12345?"
+BROKER_IP = "192.168.5.253"
 
 
 ##################################
@@ -605,7 +605,7 @@ while True:
                                 try:
                                 
                                     # Sending Info Of Analysis by MQTT.
-                                    topic = "HRV_Info"
+                                    topic = "HRV"
                                     Info = ['MeanPPI:'+ mean_PPI +'ms','MeanHR:'+ mean_HR +'bpm',
                                             'SDNN:'+ SDNN +'ms','RMSSD:'+ RMSSD +'ms',
                                             'SD1:'+ SD1 +' SD2:'+ SD2]
@@ -843,5 +843,4 @@ while True:
                     break
             if begining:
                 break         
-
 
