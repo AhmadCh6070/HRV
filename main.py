@@ -229,7 +229,7 @@ def stop_collection(tim):
 def collect_values():
     global collection_done, sensor_values
     collection_done = False
-    Timer.init(period=3600, mode=machine.Timer.ONE_SHOT, callback=stop_collection)
+    Timer.init(period=3_600, mode=machine.Timer.ONE_SHOT, callback=stop_collection)
     while not collection_done:
         if encoder.pin_sw.value() == 0:
             return False
@@ -247,12 +247,12 @@ def collect_values():
 def display_bpm_ppg(bpm, sensor_values):
     DISPLAY_WIDTH = 128
     DISPLAY_HEIGHT = 64
-    oled.fill_rect(0, 3, 64, 12, 1)
     # Display BPM text at the top left corner
-    oled.text("BPM:", 0,4, 0)
+    oled.fill_rect(0, 3, 128, 12, 1)
+    oled.text("BPM:", 39,5, 0)
     if bpm is not None and 30 <= bpm <= 150:
-        oled.text(str(round(bpm)), 40, 4, 0)  # BPM value next to the label
-    oled.fill_rect(0, 12, 128, 64, 0)
+        oled.text(str(round(bpm)), 69, 5, 0)  # BPM value next to the label
+    oled.fill_rect(0, 15, 128, 64, 0)
 
     # Allocate more space for the PPG graph
     top_margin = 12  # Reduce the top margin to give more space to the graph
@@ -262,7 +262,7 @@ def display_bpm_ppg(bpm, sensor_values):
     max_sensor_values = max(sensor_values)
     min_sensor_values = min(sensor_values)
     sensor_values_range = max_sensor_values - min_sensor_values
-    
+    led.on()
     for i in range(len(sensor_values) - 1):
         x0 = i * (DISPLAY_WIDTH - 1) // len(sensor_values)
         x1 = (i + 1) * (DISPLAY_WIDTH - 1) // len(sensor_values)
@@ -270,6 +270,7 @@ def display_bpm_ppg(bpm, sensor_values):
         y1 = graph_height - 1 - int((sensor_values[i + 1] - min_sensor_values) / sensor_values_range * (graph_height - top_margin))
         oled.line(x0, y0 + top_margin, x1, y1 + top_margin, 1)
     oled.show()
+    led.off()
 
 
      
@@ -414,6 +415,8 @@ line = framebuf.FrameBuffer(line.img, 127, 32, framebuf.MONO_VLSB)
 #ADC
 adc = machine.ADC(0)
 
+#LED
+led = Led(21)
 
 
 ##################################################
@@ -833,3 +836,4 @@ while True:
                     break
             if begining:
                 break         
+
